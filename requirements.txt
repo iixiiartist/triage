@@ -1,10 +1,13 @@
-# Pinned versions — update after first env audit run and commit the updated file
-torch==2.4.0
-transformers==4.44.0
-datasets==2.21.0
-tokenizers==0.19.1
-bitsandbytes==0.43.0
-accelerate==0.33.0
+# Pinned to the Colab T4 runtime observed in phase0/env_audits/ (2026-04-23).
+# Update only after a fresh env audit run confirms new versions work.
+torch==2.10.0
+transformers==5.0.0
+datasets==4.0.0
+tokenizers==0.22.2
+accelerate==1.13.0
+# bitsandbytes: intentionally unpinned. Not installed in the Colab T4 runtime
+# observed on 2026-04-23 and not required for Phase 0. The baseline/Phase 1
+# notebooks install it on demand; pin it here after an audit confirms a version.
 numpy<2.0
 scikit-learn
 pyyaml
