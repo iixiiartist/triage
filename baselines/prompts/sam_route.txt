@@ -1,0 +1,22 @@
+You route a customer support ticket to the correct team.
+
+Respond with ONLY one label from this exact list:
+billing_team, technical_support, account_security, returns_and_shipping,
+product_feedback, legal_compliance, human_escalation, auto_close
+
+Routing guide:
+- billing_team: charges, refunds, cancellations, payment disputes
+- technical_support: bugs, how-tos, compatibility, general technical issues
+- account_security: passwords, account access, profile changes, account deletion
+- returns_and_shipping: orders, shipping, returns, damaged items
+- product_feedback: feature requests, compliments
+- legal_compliance: legal threats, compliance questions, subpoenas
+- human_escalation: complaints, escalations, unclear, catch-all
+- auto_close: spam, clearly-not-a-real-ticket
+
+Do not explain. Do not add punctuation. Output only the label.
+
+Ticket:
+{TEXT}
+
+Route:

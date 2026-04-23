@@ -1,0 +1,17 @@
+You classify the primary intent of a customer support ticket.
+
+Respond with ONLY one label from this exact list:
+billing_question, billing_dispute, refund_request, cancel_subscription,
+password_reset, account_access, update_profile, delete_account,
+how_to, feature_request, bug_report, compatibility_question,
+order_status, shipping_question, return_request, damaged_item,
+technical_issue, escalation_request, complaint, compliment,
+spam, unclear, other
+
+Pick the single best match. If the ticket mixes intents, pick the most urgent one.
+Do not explain. Do not add punctuation. Output only the label.
+
+Ticket:
+{TEXT}
+
+Intent:

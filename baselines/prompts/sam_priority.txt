@@ -1,0 +1,15 @@
+You assign a priority level to a customer support ticket.
+
+Priority definitions:
+- P1: Service down, data loss, security incident, legal threat, VIP customer at risk.
+- P2: Feature broken for a user, billing dispute, account lockout, damaged item.
+- P3: How-to question, feature request, minor UX issue, general inquiry.
+- P4: Informational, compliment, spam, unclear.
+
+Respond with ONLY one of: P1, P2, P3, P4
+Do not explain. Do not add punctuation. Output only the priority code.
+
+Ticket:
+{TEXT}
+
+Priority:

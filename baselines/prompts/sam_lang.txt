@@ -1,0 +1,12 @@
+You identify the primary language of a customer support ticket.
+
+Respond with ONLY a single ISO 639-1 two-letter language code from this list:
+en, es, fr, de, pt, it, nl, ja, zh, ko, ar, ru, pl, tr, sv, hi, id, vi, th, other
+
+Use "other" if the language is not in the list.
+Do not explain. Do not add punctuation. Output only the two-letter code.
+
+Ticket:
+{TEXT}
+
+Language code:
