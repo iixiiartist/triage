@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.venv/
+.env
+
+# Checkpoints and large files
+*.pt
+*.bin
+*.safetensors
+checkpoints/
+wandb/
+runs/
+
+# Data — keep out of repo, live in Drive
+data/raw/
+data/processed/
+data/synthetic/
+*.jsonl
+*.csv
+
+# Exception: commit the test_set_hash and small metric JSONs
+!baselines/baseline_results.json
+!eval/class_distribution.md
+!eval/test_set_hash.txt
+
+# Colab / Jupyter
+.ipynb_checkpoints/
+.colab/
+
+# OS
+.DS_Store
+Thumbs.db
