@@ -14,14 +14,14 @@ Run `phase0_env_audit.ipynb` in Colab. It writes `env_audit_<timestamp>.json` to
 
 **Must confirm:**
 
-- [ ] GPU is T4 or better (A100/L4 on Vertex if running there)
-- [ ] CUDA + PyTorch versions match pinned requirements
-- [ ] FP16 mixed precision works (T4 has no native BF16 — same constraint as Forge)
-- [ ] bitsandbytes imports cleanly (needed for INT8 deployment path later)
-- [ ] HuggingFace `transformers`, `datasets`, `tokenizers` at pinned versions
-- [ ] Seed determinism test passes (same seed → same loss curve across two runs)
-- [ ] Drive mount works and target data directory exists
-- [ ] Free Drive space ≥ 20 GB (rough headroom for datasets + checkpoints)
+- [x] GPU is T4 or better (A100/L4 on Vertex if running there)
+- [x] CUDA + PyTorch versions match pinned requirements
+- [x] FP16 mixed precision works (T4 has no native BF16 — same constraint as Forge)
+- [~] bitsandbytes imports cleanly — DEFERRED: not required for Phase 0, will install on demand at Phase 1+ (env audit JSON records `bitsandbytes_ok: false` — intentional)
+- [x] HuggingFace `transformers`, `datasets`, `tokenizers` at pinned versions
+- [x] Seed determinism test passes (same seed → same loss curve across two runs)
+- [x] Drive mount works and target data directory exists
+- [x] Free Drive space ≥ 20 GB (rough headroom for datasets + checkpoints)
 
 **Known constraints to document in the audit output:**
 
@@ -29,6 +29,8 @@ Run `phase0_env_audit.ipynb` in Colab. It writes `env_audit_<timestamp>.json` to
 - T4 FA2 limited — stick to standard attention unless a task specifically demands it
 - Colab session limits (disconnects, runtime caps) — plan checkpoint cadence accordingly
 - Vertex: note the instance type used and any quota constraints hit
+
+**Status: GREEN as of 2026-04-23.** Env audit JSON: [phase0/env_audits/env_audit_20260423T192553Z.json](phase0/env_audits/env_audit_20260423T192553Z.json). `bitsandbytes` deferred — will install on demand in Phase 1+ notebooks; acceptable gap documented above.
 
 ---
 
@@ -54,15 +56,17 @@ See `eval_set_plan.md` for data sources, split rules, label schema.
 
 **Must confirm:**
 
-- [ ] Data sources selected and licensing reviewed for each (public ticket datasets + synthetic augmentation plan)
-- [ ] Label schemas locked for all four SAMs (language codes, intent labels, P1–P4 priority, routing destinations)
-- [ ] Train/val/test splits produced with fixed seed
-- [ ] Test set written to Drive as read-only, hash recorded in repo (`eval/test_set_hash.txt`)
-- [ ] Distribution audit: class balance check per SAM — flag any label with <30 examples in test
-- [ ] At least one human-reviewed sample per class in test (sanity check for label correctness)
-- [ ] Test set size: aim for 2–5K examples total; enough for stable metrics without being unwieldy
+- [x] Data sources selected and licensing reviewed for each (public ticket datasets + synthetic augmentation plan)
+- [x] Label schemas locked for all four SAMs (language codes, intent labels, P1–P4 priority, routing destinations)
+- [x] Train/val/test splits produced with fixed seed
+- [x] Test set written to Drive as read-only, hash recorded in repo (`eval/test_set_hash.txt`)
+- [x] Distribution audit: class balance check per SAM — flag any label with <30 examples in test
+- [x] At least one human-reviewed sample per class in test (sanity check for label correctness)
+- [x] Test set size: aim for 2–5K examples total; enough for stable metrics without being unwieldy
 
 **Freeze rule.** Once the test set hash is committed, it does not change. If you need more test data later, it goes into a separate `test_v2.jsonl`, not into this one. This is non-negotiable — it's the only way to get honest comparisons across Phase 1 through Phase 5.
+
+**Status: GREEN as of 2026-04-23.** Frozen test hash: `e794b4c399a128634248747ad67b713aac933673871f19e649f3ed50989392ca` (see [eval/test_set_hash.txt](eval/test_set_hash.txt)). 15 intent classes, 10 languages, 2,190 test rows, every class clears `MIN_TEST_PER_CLASS=30`. MASSIVE downsampled to 2k rows/locale; `out_of_scope` introduced as a distinct label routed to `auto_close`. See [nico/DECISION_LOG.md](nico/DECISION_LOG.md) (2026-04-23) for the decision log entry and [eval/known_errors.md](eval/known_errors.md) for boundary decisions.
 
 ---
 
