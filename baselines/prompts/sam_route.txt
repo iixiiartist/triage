@@ -12,7 +12,7 @@ Routing guide:
 - product_feedback: feature requests, compliments
 - legal_compliance: legal threats, compliance questions, subpoenas
 - human_escalation: complaints, escalations, unclear, catch-all
-- auto_close: spam, clearly-not-a-real-ticket
+- auto_close: spam (adversarial/junk), out-of-scope queries (voice-assistant-style commands, factoid questions, general chit-chat — not malicious, just not support-related)
 
 Do not explain. Do not add punctuation. Output only the label.
 

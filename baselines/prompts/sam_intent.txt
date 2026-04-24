@@ -6,7 +6,11 @@ password_reset, account_access, update_profile, delete_account,
 how_to, feature_request, bug_report, compatibility_question,
 order_status, shipping_question, return_request, damaged_item,
 technical_issue, escalation_request, complaint, compliment,
-spam, unclear, other
+spam, unclear, other, out_of_scope
+
+Note on catch-all labels:
+- other = legitimate support query without a specific bucket above (e.g., "question about opening a business account")
+- out_of_scope = not a support query at all (e.g., "set an alarm for 7am", "what's the weather", "tell me a joke")
 
 Pick the single best match. If the ticket mixes intents, pick the most urgent one.
 Do not explain. Do not add punctuation. Output only the label.
